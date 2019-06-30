@@ -10,3 +10,6 @@ dashboard:
 reports:
     path: /admin/relatorios
     controller: App\Controller\DefaultController::reports
+login:
+    path: /admin/login
+    controller: App\Controller\DefaultController::login

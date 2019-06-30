@@ -17,7 +17,13 @@ security:
         main:
             anonymous: true
 
-            http_basic: true
+            #http_basic: true
+            
+            form_login: 
+                login_path: login
+                check_path: login
+                default_target_path: dashboard
+                always_use_default_target_path: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -31,6 +37,7 @@ security:
         ROLE_ADMIN: ROLE_USER
 
     access_control:
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/relatorios, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_USER }
         - { path: ^/admin/dashboard, roles: ROLE_USER }
