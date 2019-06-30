@@ -13,3 +13,5 @@ reports:
 login:
     path: /admin/login
     controller: App\Controller\DefaultController::login
+logout:
+    path: /logout
