@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,5 +44,44 @@ class DefaultController extends AbstractController
             'error' => $error,
             'last_username' => $lastUsername
         ]);   
+    }
+
+    public function insert()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        #$factory = $this->get('security.encoder_factory');
+        #$encoder = $factory->getEncoder($user);
+        #$password = $encoder->encodePassword("123", $user->getSalt());
+
+        $options = [
+            'cost' => 12
+        ];
+        
+        $user = new User();
+        $user->setUsername('usuario');
+        $user->setEmail('usuario@usuario.com');
+        $user->setRoles("ROLE_USER");
+
+        $em->persist($user);
+
+        
+        #$password = $encoder->encodePassword($user, "123");
+        $user->setPassword(password_hash('123', PASSWORD_BCRYPT, $options));
+
+        $admin = new User();
+        $admin->setUsername('admin');
+        $admin->setEmail('admin@admin.com');
+        $admin->setRoles("ROLE_ADMIN");
+        
+        #$password = $encoder->encodePassword("abc", $user->getSalt());
+
+        $admin->setPassword(password_hash('abc', PASSWORD_BCRYPT, $options));
+
+        $em->persist($admin);
+
+        $em->flush();
+
+        return new Response("<h1>Usuários cadastrados com sucesso!</h1>");
     }
 }

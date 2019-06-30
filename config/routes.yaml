@@ -15,3 +15,6 @@ login:
     controller: App\Controller\DefaultController::login
 logout:
     path: /logout
+insert:
+    path: insert
+    controller: App\Controller\DefaultController::insert
