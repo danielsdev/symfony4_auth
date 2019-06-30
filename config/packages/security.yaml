@@ -2,7 +2,9 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         main:
-            entity: {class: App\Entity\User, property: username }
+            #entity: {class: App\Entity\User, property: username }
+            entity: 
+                class: App\Entity\User
 #        backend_users:
 #            memory: 
 #                users:
