@@ -20,4 +20,14 @@ class DefaultController extends AbstractController
 
         return new Response("<html><body><h1>Page Admin! </h1></body></html>");
     }
+
+    public function dashboard(){
+
+        return new Response("<html><body><h1>Page Admin Dashboard! </h1></body></html>");
+    }
+
+    public function reports(){
+
+        return new Response("<html><body><h1>Page Admin Relatórios! </h1></body></html>");
+    }
 }
