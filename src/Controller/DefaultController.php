@@ -21,17 +21,25 @@ class DefaultController extends AbstractController
 
     public function admin(){
 
-        return new Response("<html><body><h1>Page Admin! </h1></body></html>");
+        $texto = "Esse usuário não é admin";
+
+        if($this->isGranted('ROLE_ADMIN')){
+            $texto = "Esse usuário é um administrador";
+        }
+
+        return $this->render("admin/index.html.twig", [
+            'texto' => $texto
+        ]);
     }
 
     public function dashboard(){
 
-        return new Response("<html><body><h1>Page Admin Dashboard! </h1></body></html>");
+        return $this->render("admin/dashboard.html.twig");
     }
 
     public function reports(){
 
-        return new Response("<html><body><h1>Page Admin Relatórios! </h1></body></html>");
+        return $this->render("admin/reports.html.twig");
     }
 
     public function login(Request $request, AuthenticationUtils $authUtils)
